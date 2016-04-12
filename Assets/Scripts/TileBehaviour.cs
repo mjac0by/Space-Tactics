@@ -22,6 +22,7 @@ public class TileBehaviour : MonoBehaviour
     //IMPORTANT: for methods like OnMouseEnter, OnMouseExit and so on to work, collider (Component -> Physics -> Mesh Collider) should be attached to the prefab
     void OnMouseEnter()
     {
+		Debug.Log ("Mouse enter");
         GridManager.instance.selectedTile = tile;
         //when mouse is over some tile, the tile is passable and the current tile is neither destination nor origin tile, change color to orange
         if (tile.Passable && this != GridManager.instance.destTileTB

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class GridManager : MonoBehaviour
 {
@@ -63,8 +64,9 @@ public class GridManager : MonoBehaviour
     //Finally the method which initialises and positions all the tiles
     void createGrid()
     {
-        //Game object which is the parent of all the hex tiles
-        GameObject hexGridGO = new GameObject("HexGrid");
+
+		GameObject hexGridGO = new GameObject("HexGrid");
+
 
         for (float y = 0; y < gridHeightInHexes; y++)
         {
@@ -76,6 +78,7 @@ public class GridManager : MonoBehaviour
                 Vector2 gridPos = new Vector2(x, y);
                 hex.transform.position = calcWorldCoord(gridPos);
                 hex.transform.parent = hexGridGO.transform;
+
             }
         }
     }
