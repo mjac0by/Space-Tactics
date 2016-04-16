@@ -8,13 +8,15 @@ public class TileBehaviour : MonoBehaviour
     public Material OpaqueMaterial;
     public Material defaultMaterial;
     //Slightly transparent orange
-    Color orange = new Color(255f / 255f, 127f / 255f, 0, 127f / 255f);
+    Color cursorHoverColour = Color.blue;
+    Color cursorLeftClickColour = Color.green;
+    Color cursorRightClickColour = Color.red;
 
     void changeColor(Color color)
     {
         //If transparency is not set already, set it to default value
-        if (color.a == 1)
-            color.a = 130f / 255f;
+       // if (color.a == 1)
+       //     color.a = 130f / 255f;
         GetComponent<Renderer>().material = OpaqueMaterial;
         GetComponent<Renderer>().material.color = color;
     }
@@ -22,13 +24,11 @@ public class TileBehaviour : MonoBehaviour
     //IMPORTANT: for methods like OnMouseEnter, OnMouseExit and so on to work, collider (Component -> Physics -> Mesh Collider) should be attached to the prefab
     void OnMouseEnter()
     {
-		//Debug.Log ("Mouse enter");
         GridManager.instance.selectedTile = tile;
-        //when mouse is over some tile, the tile is passable and the current tile is neither destination nor origin tile, change color to orange
-       // if (tile.Passable && this != GridManager.instance.destTileTB
-       //     && this != GridManager.instance.originTileTB)
+        //when mouse is over some tile, and color is not Red/Green, change color to orange
+        if (this.isColour(Color.white))
         {
-            changeColor(orange);
+            changeColor(cursorHoverColour);
         }
     }
 
@@ -36,11 +36,10 @@ public class TileBehaviour : MonoBehaviour
     void OnMouseExit()
     {
         GridManager.instance.selectedTile = null;
-       // if (tile.Passable && this != GridManager.instance.destTileTB
-        //    && this != GridManager.instance.originTileTB)
+        if (this.isColour(cursorHoverColour))
         {
-            this.GetComponent<Renderer>().material = defaultMaterial;
-            this.GetComponent<Renderer>().material.color = Color.white;
+            GetComponent<Renderer>().material = defaultMaterial;
+            GetComponent<Renderer>().material.color = Color.white;
         }
     }
     //called every frame when mouse cursor is on this tile
@@ -49,32 +48,26 @@ public class TileBehaviour : MonoBehaviour
         //if player right-clicks on the tile, toggle passable variable and change the color accordingly
         if (Input.GetMouseButtonUp(1))
         {
-            changeColor(Color.green);
-            /*if (this == GridManager.instance.destTileTB ||
-                this == GridManager.instance.originTileTB)
-                return;
-            tile.Passable = !tile.Passable;
-            if (!tile.Passable)
-                changeColor(Color.gray);
-            else
-                changeColor(orange);*/
-            
-            //GridManager.instance.generateAndShowPath();
+            if (this.isColour(cursorRightClickColour))
+            {
+                changeColor(cursorHoverColour);
+            }
+            else {
+                changeColor(cursorRightClickColour);
+            }
+
         }
         //if user left-clicks the tile
         if (Input.GetMouseButtonUp(0))
         {
-            changeColor(Color.blue);
-            /*tile.Passable = true;
-
-            TileBehaviour originTileTB = GridManager.instance.originTileTB;
-            //if user clicks on origin tile or origin tile is not assigned yet
-            if (this == originTileTB || originTileTB == null)
-                originTileChanged();
+            if (this.isColour(cursorLeftClickColour))
+            {
+                changeColor(cursorHoverColour);
+            }
             else
-                destTileChanged();*/
-
-            //GridManager.instance.generateAndShowPath();
+            {
+                changeColor(cursorLeftClickColour);
+            }
         }
     }
 
@@ -100,7 +93,7 @@ public class TileBehaviour : MonoBehaviour
         if (this == destTile)
         {
             GridManager.instance.destTileTB = null;
-            GetComponent<Renderer>().material.color = orange;
+            GetComponent<Renderer>().material.color = cursorHoverColour;
             return;
         }
         //if there was other tile marked as destination, change its material to default (fully transparent) one
@@ -108,5 +101,16 @@ public class TileBehaviour : MonoBehaviour
             destTile.GetComponent<Renderer>().material = defaultMaterial;
         GridManager.instance.destTileTB = this;
         changeColor(Color.blue);
+    }
+
+    bool isColour(Color colour) {
+        if (GetComponent<Renderer>().material.color != colour)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+
     }
 }
