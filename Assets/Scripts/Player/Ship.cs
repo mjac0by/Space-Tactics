@@ -1,26 +1,31 @@
-﻿namespace Player
-{
-    internal class Ship
-    {
-        private int hp, maxHP; //Hull
-        private int ap, maxAP; //Armor
-        private int sp, maxSP; //Shields
-        private int ep, maxEP; //Energy
+﻿using System.IO;
+using UnityEngine;
 
-        private int facing; //Measure facing 0-5 clockwise with 0 being North
-                            //ie Z rotation is 60 degrees * facing relative to Y+ axis
-        private Point location;
+namespace Player
+{
+    public class Ship : MonoBehaviour
+    {
+        public int hp, maxHP; //Hull
+        private int ap, maxAP; //Armor
+        public int sp, maxSP; //Shields
+        public int ep, maxEP; //Energy
+
         private int momentum;
 
-        public Ship ()      //Default ship for testing
+        public Ship()      //Default ship for testing
         {
             maxHP = 1; hp = maxHP;
             maxAP = 0; ap = maxAP;
             maxSP = 1; sp = maxSP;
             maxEP = 1; ep = maxEP;
+        }
 
-            facing = 0;
-            location = new Point(0,0);
+        void onGUI()
+        {
+            //HP Bar
+            //Armor Bar
+            //Shield Bar
+            //Energy Bar
         }
 
         void takeDamage (int dmg, Point source, string dmgType)

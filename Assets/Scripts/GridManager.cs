@@ -32,6 +32,10 @@ public class GridManager : MonoBehaviour
         hexWidth = Hex.GetComponent<Renderer>().bounds.size.x;
         hexHeight = Hex.GetComponent<Renderer>().bounds.size.y;
     }
+    public Vector2 hexSize()
+    {
+        return new Vector2 (hexWidth, hexHeight);
+    }
 
     //Method to calculate the position of the first hexagon tile
     //The center of the hex grid is (0,-1.5,0)
