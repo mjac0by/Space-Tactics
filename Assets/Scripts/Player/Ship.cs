@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player
 {
@@ -12,20 +13,16 @@ namespace Player
 
         private int momentum;
 
+        public GameObject me;
+
+        //GUI Stuff
+        
         public Ship()      //Default ship for testing
         {
             maxHP = 1; hp = maxHP;
             maxAP = 0; ap = maxAP;
             maxSP = 1; sp = maxSP;
             maxEP = 1; ep = maxEP;
-        }
-
-        void onGUI()
-        {
-            //HP Bar
-            //Armor Bar
-            //Shield Bar
-            //Energy Bar
         }
 
         void takeDamage (int dmg, Point source, string dmgType)
