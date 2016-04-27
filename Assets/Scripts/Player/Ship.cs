@@ -12,10 +12,6 @@ namespace Player
         public int ep, maxEP; //Energy
 
         private int momentum;
-
-        public GameObject me;
-
-        //GUI Stuff
         
         public Ship()      //Default ship for testing
         {

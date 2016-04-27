@@ -15,7 +15,7 @@ public class TileBehaviour : MonoBehaviour
     void changeColor(Color color)
     {
         //If transparency is not set already, set it to default value
-       // if (color.a == 1)
+       //if (color.a == 1)
        //     color.a = 130f / 255f;
         GetComponent<Renderer>().material = OpaqueMaterial;
         GetComponent<Renderer>().material.color = color;

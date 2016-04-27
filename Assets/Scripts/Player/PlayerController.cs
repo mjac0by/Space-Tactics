@@ -25,9 +25,40 @@ namespace Player
                 moving = false;
             }
         }
+        void OnMouseOver()
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                //Highlight the ship and its tile
 
+                //Highlight all valid moves
+
+                    /* Get the ship's energy
+                     * For each point of energy:
+                     *      get all neighbors
+                     *      if they aren't highlit; highlight them according to the current iteration
+                     *      if they ARE highlit, and the new path would be faster, replace the highlighting
+                     *      pass all of the neighbor tiles up to repeat the process recursively */
+
+                //If you left-click somewhere else, return to default display
+                    //Deselect all tiles
+
+                //If you left-click a valid move, highlight the path there
+                    //Then if you click again, move there
+                //If you right-click a valid move, move there
+
+                //After you've moved, spend energy
+
+                //If the ship is out of energy; deselect it
+
+                //Otherwise, update the valid moves
+            }
+        }
         private void CheckInput()
-        {   // QWEASD control
+        {
+            //Verify that the ship has energy before allowing it to move
+            
+            // QWEASD control
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {   thrust(1,0);    }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -39,6 +70,8 @@ namespace Player
 
             else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))  { yaw(-1);    moving = true; }
             else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) { yaw( 1);    moving = true; }
+               
+            //After it moves, spend energy
         }
 
         private void yaw (int r) { facing = (facing + r + 6) % 6; transform.Rotate(0, 60*r, 0); moving = true; }
