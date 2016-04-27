@@ -4,16 +4,6 @@ using UnityEngine;
 using System.Collections.Generic;
 //Basic skeleton of Tile class which will be used as grid node
 
-/*      Tile States
- *  0       Default (fully transparent)
- *  1       Mouse Over (highlit blue)
- *  2       Selected (highlit white)
- *  3       Legal Move (highlit green)
- *  4       Pathing (impose path trail)
- *  5       Obstacle (highlit orange)
- *  6       Enemy (highlit red)
- */
-
 public class Tile : GridObject, IHasNeighbours<Tile>
 {
     public bool Passable;
