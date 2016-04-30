@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TileBehaviour : MonoBehaviour
 {
-    public Tile tile;
+    //public Tile tile;
     //After attaching this script to hex tile prefab don't forget to initialize following materials with the ones we created earlier
     public Material opaqueMaterial;
     public Material defaultMaterial;
@@ -36,7 +36,7 @@ public class TileBehaviour : MonoBehaviour
     //MOUSE INTERACTIONS
     void OnMouseEnter()
     {
-        GridManager.instance.selectedTile = tile;
+        //GridManager.instance.selectedTile = tile;
         if (this.Colour() == Color.green)
             changeState("OverSelection");
         else if (this.Colour() == Color.white)
@@ -46,7 +46,7 @@ public class TileBehaviour : MonoBehaviour
 
     void OnMouseExit()
     {
-        GridManager.instance.selectedTile = null;
+        //GridManager.instance.selectedTile = null;
         if (this.Colour() == Color.yellow)
             changeState("Selected");
         else if (this.Colour() == Color.red)
